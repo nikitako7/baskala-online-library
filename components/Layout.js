@@ -1,4 +1,5 @@
-import Link from 'next/link'
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Layout({ children }) {
   return (
@@ -7,7 +8,7 @@ export default function Layout({ children }) {
         <Link href="/">
           <a>
             <h1>
-              Baskala
+              <Image src='/../public/images/baskala-logo.png' width={250} height={82}/>
             </h1>
           </a>
         </Link>
