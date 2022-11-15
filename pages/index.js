@@ -15,9 +15,9 @@ export async function getStaticProps(params) {
   }
 }
 
-export default function Recipes({ books  }) {
+export default function Books({ books  }) {
   return (
-    <div className="recipe-list">
+    <div className="book-list">
       {books.map( (book)  => (
          <Book key={book.sys.id} book={book} />
       ))}

@@ -46,7 +46,7 @@ export const getStaticProps = async ({ params }) => {
 
 }
 
-export default function RecipeDetails({ book }) {
+export default function BookDetails({ book }) {
   if (!book) return <NotFound />;
 
   const { featuredImage, title, author, description } = book.fields;
