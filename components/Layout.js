@@ -14,7 +14,7 @@ export default function Layout({ children }) {
         </Link>
       </header>
 
-      <div className="page-content">
+      <div>
         { children }
       </div>
 

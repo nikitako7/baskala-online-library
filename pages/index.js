@@ -1,5 +1,7 @@
 import { createClient } from 'contentful'; 
-import Book from '../components/Book'
+import Book from '../components/Book';
+import { Intro } from '../components/Intro/Intro';
+
 export async function getStaticProps(params) {
   const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID,
@@ -17,10 +19,15 @@ export async function getStaticProps(params) {
 
 export default function Books({ books  }) {
   return (
-    <div className="book-list">
-      {books.map( (book)  => (
-         <Book key={book.sys.id} book={book} />
-      ))}
-    </div> 
+    <>
+      <Intro />
+      <div className="page-content">
+        <div className="book-list">
+          {books.map( (book)  => (
+            <Book key={book.sys.id} book={book} />
+          ))}
+        </div>
+      </div>
+    </>
   )
 } 
