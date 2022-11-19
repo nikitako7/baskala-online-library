@@ -4,14 +4,12 @@ import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <Layout>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </>
+      <Component {...pageProps} />
+    </Layout>
   )
 }
 
