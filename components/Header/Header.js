@@ -28,7 +28,7 @@ export const Header = () => {
         <div className={styles.header__searchBarContainer}>
           <div className={styles.header__searchBar}>
               <Image src='/../public/images/search-icon.svg' width={24} height={24}/>
-              <input type="text" title='Searchbar' placeholder='Search by title, author, topic' />
+              <input type="text" title='Searchbar' placeholder='Искать книгу по названию, авторе, теме' />
           </div>
         </div>
         <nav className={styles.header__links}>
