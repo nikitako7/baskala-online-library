@@ -7,6 +7,7 @@ function MyApp({ Component, pageProps }) {
     <Layout>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
       </Head>
       <Component {...pageProps} />
     </Layout>
