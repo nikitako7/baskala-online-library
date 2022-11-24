@@ -20,13 +20,13 @@ export const Header = () => {
         <Link href="/">
           <a>
             <figure>
-              <Image src='/../public/images/baskala-logo.png' width={150} height={49}/>
+              <Image src='/static/img/baskala-logo.png' width={150} height={49}/>
             </figure>
           </a>
         </Link>
         <div className={styles.header__searchBarContainer}>
           <div className={styles.header__searchBar}>
-              <Image src='/../public/images/search-icon.svg' width={24} height={24}/>
+              <Image src='/static/img/search-icon.svg' width={24} height={24}/>
               <input type="text" title='Searchbar' placeholder='Искать книгу по названию, авторе, теме' />
           </div>
         </div>

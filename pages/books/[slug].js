@@ -68,7 +68,7 @@ console.log(book);
         <div className={styles.book__leftside_info}>
           <div className={styles.book__leftside_item}>
             <Image 
-              src='/../public/images/open-book.png'
+              src='/static/img/open-book.png'
               width='24'
               height='24'
               className={styles.book__leftside_icon}
@@ -77,7 +77,7 @@ console.log(book);
           </div>
           <div className={styles.book__leftside_item}>
             <Image 
-              src='/../public/images/internet.png'
+              src='/static/img/internet.png'
               width='24'
               height='24'
               className={styles.book__leftside_icon}
@@ -86,7 +86,7 @@ console.log(book);
           </div>
           <div className={styles.book__leftside_item}>
             <Image 
-              src='/../public/images/checked.png'
+              src='/static/img/checked.png'
               width='24'
               height='24'
               className={styles.book__leftside_icon}

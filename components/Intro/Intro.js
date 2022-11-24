@@ -8,7 +8,7 @@ export const Intro = () => {
       <div className={styles.intro__content}>
         <div className={styles.intro__left}>
           <h2>
-            <Image src='/../public/images/baskala-logo.png' width={250} height={82} />
+            <Image src='/static/img/baskala-logo.png' width={250} height={82} />
           </h2>
           <h1>читать книгу здесь</h1>
           <h4>Лучшие решения для интернет-маркетинга</h4>
