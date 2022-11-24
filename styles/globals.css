@@ -555,6 +555,7 @@ header h1 {
 .swiper-button-prev,
 .swiper-button-next {
     top: 40% !important;
+    z-index: 0 !important;
 }
 
 .swiper-button-prev::after,
