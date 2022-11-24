@@ -26,7 +26,7 @@ export const Intro = () => {
         <div className={styles.intro__right}>
           <figure>
               <Image 
-                  src='/../public/images/intro.webp' 
+                  src='/static/img/intro.webp' 
                   layout="fill"
                   objectFit="cover"
                   objectPosition="center"
