@@ -518,14 +518,6 @@ header h1 {
   margin: 0;
 }
 
-footer {
-  background: #111;
-  color: #bbb;
-  padding: 40px;
-  text-align: center;
-  margin-top: auto
-}
-
 .page-content {
   max-width: 1200px;
   margin: 20px auto 80px;

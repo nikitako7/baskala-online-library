@@ -1,4 +1,5 @@
 import { Header } from './Header/Header';
+import { Footer } from './Footer/Footer';
 
 export default function Layout({ children }) {
   return (
@@ -9,9 +10,7 @@ export default function Layout({ children }) {
         { children }
       </div>
 
-      <footer>
-        <p>Copyright 2022 Baskala</p>
-      </footer>
+      <Footer />
     </div>
   )
 }

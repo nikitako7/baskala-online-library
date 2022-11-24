@@ -2,6 +2,8 @@ import { createClient } from 'contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Image from 'next/image';
 import NotFound from '../404';
+import styles from './book-slug.module.scss';
+import { saveAs } from 'file-saver';
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -48,23 +50,75 @@ export const getStaticProps = async ({ params }) => {
 
 export default function BookDetails({ book }) {
   if (!book) return <NotFound />;
-
-  const { featuredImage, title, author, description } = book.fields;
+console.log(book)
+  const { featuredImage, title, author, description, pdfFile, pages, publisher, topic, year, subtopic } = book.fields;
 
   return (
-    <div>
-      <div className="banner">
-        <Image 
-          src={'https:' + featuredImage.fields.file.url}
-          width={featuredImage.fields.file.details.image.width}
-          height={featuredImage.fields.file.details.image.height}
-        />
-        <h2>{ title }</h2>
+    <div className={styles.book}>
+      <div className={styles.book__leftside}>
+        <div className={styles.book__leftside_imageWrapper}>
+          <Image 
+            src={'https:' + featuredImage.fields.file.url}
+            width={featuredImage.fields.file.details.image.width}
+            height={featuredImage.fields.file.details.image.height}
+            className={styles.book__leftside_image}
+          />
+        </div>
+        <div className={styles.book__leftside_info}>
+          <div className={styles.book__leftside_item}>
+            <Image 
+              src='/../public/images/open-book.png'
+              width='24'
+              height='24'
+              className={styles.book__leftside_icon}
+            />
+            <span>{pages} pages</span>
+          </div>
+          <div className={styles.book__leftside_item}>
+            <Image 
+              src='/../public/images/internet.png'
+              width='24'
+              height='24'
+              className={styles.book__leftside_icon}
+            />
+            <span>English</span>
+          </div>
+          <div className={styles.book__leftside_item}>
+            <Image 
+              src='/../public/images/checked.png'
+              width='24'
+              height='24'
+              className={styles.book__leftside_icon}
+            />
+            <span>Available on iOS & Android</span>
+          </div>
+        </div>
       </div>
-
-      <div className="info">
-        <h3>Author: { author }</h3>
-        <div>{documentToReactComponents(description)}</div>
+      <div className={styles.book__rightside}>
+          <h2 className={styles.book__rightside_title}>{ title }</h2>
+          <h3 className={styles.book__rightside_author}>{ author }</h3>
+          <h3 className={styles.book__rightside_descriptionTitle}>About This Book</h3>
+          <div className={styles.book__rightside_description}>{documentToReactComponents(description)}</div>
+          <button className={styles.book__rightside_button} onClick={() => saveAs('https:' + pdfFile.fields.file.url, title)}>Download PDF</button>
+          <h3 className={styles.book__rightside_information}>Information</h3>
+          <div className={styles.book__rightside_information}>
+            <div className={styles.book__rightside_item}>
+              <span className={styles.book__rightside_itemTitle}>Publisher:</span>
+              <span className={styles.book__rightside_itemText}>{publisher}</span>
+            </div>
+            <div className={styles.book__rightside_item}>
+              <span className={styles.book__rightside_itemTitle}>Topic:</span>
+              <span className={styles.book__rightside_itemText}>{topic}</span>
+            </div>
+            <div className={styles.book__rightside_item}>
+              <span className={styles.book__rightside_itemTitle}>Year:</span>
+              <span className={styles.book__rightside_itemText}>{year}</span>
+            </div>
+            <div className={styles.book__rightside_item}>
+              <span className={styles.book__rightside_itemTitle}>Subtopic:</span>
+              <span className={styles.book__rightside_itemText}>{subtopic}</span>
+            </div>
+          </div>
       </div>
     </div>
   )
