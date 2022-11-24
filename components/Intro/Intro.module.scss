@@ -1,7 +1,12 @@
 .intro {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    grid-template-rows: 1fr;
+    &__content {
+        margin: 0 auto;
+        max-width: 1440px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        grid-template-rows: 1fr;
+    }
 
     &__left {
         display: flex;
@@ -53,9 +58,9 @@
 
     &__right {
         position: relative;
-        img {
-            z-index: 0;
-        }
+            img {
+                z-index: 0;
+            }
     }
 }
 

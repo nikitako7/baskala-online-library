@@ -85,7 +85,7 @@ export const genres = [
 ];
 
 export const options = [
-    { value: 'татарский латиница', label: 'татарский латиница' },
-    { value: 'татарский кириллица', label: 'татарский кириллица' },
-    { value: 'русский', label: 'русский' },
+    { value: 'татарский латиница', label: 'CRI lt' },
+    { value: 'татарский кириллица', label: 'CRI' },
+    { value: 'русский', label: 'RU' },
 ];

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Select from 'react-select';
 import styles from './Header.module.scss';
 import { links, options, genres } from '../../utils/index';
 
@@ -13,15 +12,15 @@ const genresHeaderAndFooter = {
 
 export const Header = () => {
   const [activeLink, setActiveLink] = useState({id: '', title: ''});
-  const [selectedOption, setSelectedOption] = useState(options[2]);
 
   return (
     <>
       <header className={styles.header}>
+        <div className={styles.header__content}>
         <Link href="/">
           <a>
             <figure>
-              <Image src='/../public/images/baskala-logo.png' width={250} height={82}/>
+              <Image src='/../public/images/baskala-logo.png' width={150} height={49}/>
             </figure>
           </a>
         </Link>
@@ -43,13 +42,15 @@ export const Header = () => {
               </li>
             ))}
           </ul>
+          <div className={styles.header__select}>
+          <select name="languages" id="languages">
+            {options.map(({value, label}) => (
+              <option key={value} value={value}>{label}</option>
+            ))}
+          </select>
+        </div>
         </nav>
-        <Select
-          className={styles.header__select}
-          defaultValue={selectedOption}
-          onChange={setSelectedOption}
-          options={options}
-        />
+        </div>
       </header>
       {activeLink.title === 'Жанры' && (
         <section className={styles.genres}>
@@ -58,7 +59,7 @@ export const Header = () => {
           {
             genres.map(({id, title, items}) => (
               <div className={styles.genre} key={id}>
-                <h4>{title}</h4>
+                <h4 className={styles.genres__title}>{title}</h4>
                 <div className={styles.genres__items}>
                   {!!items.length && items.map(({id: genreId, genre}) => (
                     <p key={genreId}>{genre}</p>

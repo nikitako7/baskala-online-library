@@ -1,9 +1,22 @@
 .header {
-    position: relative;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 5;
     padding: 20px 30px;
-    display: flex;
-    align-items: center;
-    gap: 30px;
+
+    &__content {
+        margin: 0 auto;
+        max-width: 1440px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        figure {
+            padding-top: 5px;
+        }
+    }
 
     &__searchBarContainer {
         width: 50%;
@@ -11,6 +24,7 @@
 
     &__searchBar {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         gap: 5px;
         background-color: lightgray;
@@ -28,6 +42,9 @@
     }
 
     &__links {
+        display: flex;
+        align-items: center;
+        gap: 20px;
         ul {
             display: flex;
             align-items: center;
@@ -37,8 +54,8 @@
                 position: relative;
                 box-sizing: border-box;
                 list-style-type: none;
-                font-size: 24px;
-                line-height: 20px;
+                font-size: 18px;
+                line-height: 14px;
                 cursor: pointer;
 
                 &::before {
@@ -56,8 +73,24 @@
     }
 
     &__select {
+        padding-top: 5px;
         width: 20%;
-        outline: none;
+        padding-bottom: 5px;
+        select {
+            font-size: 18px;
+            line-height: 14px;
+            border: none;
+            outline: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: transparent;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position-x: 100%;
+            background-position-y: 10px;
+            padding: 1rem;
+            padding-right: 2rem;
+        }
     }
 }
 
@@ -68,12 +101,15 @@
 }
 
 .genres {
+    background-color: white;
+    position: fixed;
+    top: 8%;
     right: 0;
     left: 0;
-    z-index: 1;
+    z-index: 4;
 
     &__content {
-        padding: 0 30px 20px;
+        padding: 15px 30px 20px;
         display: flex;
         justify-content: space-between;
     }
@@ -81,18 +117,19 @@
     &__genre {
         display: flex;
         flex-direction: column;
+    }
 
-        h4 {
-            font-size: 20px;
-            line-height: 16px;
-            font-weight: 800;
-        }
+    &__title {
+        font-size: 20px;
+        line-height: 16px;
+        font-weight: 500;
+        padding-bottom: 15px;
     }
 
     &__items {
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 10px;
 
         p {
             font-size: 16px;

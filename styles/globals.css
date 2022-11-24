@@ -519,7 +519,8 @@ header h1 {
 }
 
 .page-content {
-  max-width: 1200px;
+  position: relative;  
+  max-width: 1340px;
   margin: 20px auto 80px;
   padding: 0 20px;
   width: 100%;
@@ -527,6 +528,36 @@ header h1 {
 }
 
 .book-list {
-  display: flex;
- justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.label {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) !important;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.swiper-container {
+    position: static !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    top: 40% !important;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    color: black;
 }
