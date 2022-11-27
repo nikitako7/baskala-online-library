@@ -3,7 +3,6 @@ import Image from 'next/image';
 import styles from './Book.module.scss';
 
 export default function Book({ book }) {
-
   const { title, slug, author, thumbnail, year } = book.fields;
   return (
     <div className={styles.book}>

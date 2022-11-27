@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from "react-redux";
 import styles from './Header.module.scss';
 import { links, options, genres } from '../../utils/index';
+import { bookSelector, setFilters } from '../../store/appSlice';
 
 const genresHeaderAndFooter = {
   width: '100%',
@@ -11,7 +14,35 @@ const genresHeaderAndFooter = {
 }
 
 export const Header = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const [activeLink, setActiveLink] = useState({id: '', title: ''});
+  const [search, setSearch] = useState('');
+  const books = useSelector(bookSelector);
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const copyBooks = [...books];
+    const findByTitle = copyBooks.filter(({ fields: { title } }) => title === search);
+    const findByAuthor = copyBooks.filter(
+      ({ fields: { author: { fields: { fullName }}}}) => fullName === search);
+    const findByTopic = copyBooks.filter(({ fields: { topic } }) => topic === search);
+    
+    if (search.trim() && findByTitle.length) {
+      dispatch(setFilters([...findByTitle]))
+    }
+
+    if (search.trim() && findByAuthor.length) {
+      dispatch(setFilters([...findByAuthor]))
+    }
+
+    if (search.trim() && findByTopic.length) {
+      dispatch(setFilters([...findByTopic]))
+    }
+
+    setSearch('');
+    router.push('/search');
+  }
 
   return (
     <>
@@ -25,10 +56,16 @@ export const Header = () => {
           </a>
         </Link>
         <div className={styles.header__searchBarContainer}>
-          <div className={styles.header__searchBar}>
+          <form className={styles.header__searchBar} onSubmit={onSubmitHandler}>
               <Image src='/static/img/search-icon.svg' width={24} height={24}/>
-              <input type="text" title='Searchbar' placeholder='Искать книгу по названию, авторе, теме' />
-          </div>
+              <input 
+                value={search} 
+                onChange={(e) => setSearch(e.target.value)} 
+                type="text" 
+                title='Searchbar' 
+                placeholder='Искать книгу по названию, авторе, теме' 
+              />
+          </form>
         </div>
         <nav className={styles.header__links}>
           <ul>

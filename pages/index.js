@@ -1,12 +1,17 @@
+import React, { useEffect } from 'react';
 import { createClient } from 'contentful';
-import { Intro } from '../components/Intro/Intro';
-import Book from '../components/Book/Book';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Spinner } from 'react-spinner-animated';
+import { useSelector, useDispatch } from "react-redux";
+import { Intro } from '../components/Intro/Intro';
+import Book from '../components/Book/Book';
+import { setBooks, filterSelector } from '../store/appSlice';
 import "swiper/components/navigation/navigation.min.css";
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
+import 'react-spinner-animated/dist/index.css';
 
 SwiperCore.use([Navigation]);
 
@@ -25,20 +30,14 @@ export async function getStaticProps(params) {
   }
 }
 
-const fetchData = async() => {
-  const client = createClient({
-    space: '39onfl0s0lfd',
-    accessToken: 'r_HUD_W7ZBqxlPVoKRaXr3Z2eV1wkzFyDhkF3cbulFU', 
-  });
-
-  const res =  await client.getEntries({ content_type: 'book' });
-
-  return {
-    books: res.items,
-  }
-}
-
 export default function Books({ books }) {
+  const dispatch = useDispatch();
+  const filteredBooks = useSelector(filterSelector);
+
+  useEffect(() => {
+    dispatch(setBooks([...books]));
+  })
+  
   return (
     <>
       <Intro />
@@ -65,14 +64,7 @@ export default function Books({ books }) {
             <h3 className='label'>Последние добавленные</h3>
               <InfiniteScroll
                 dataLength={books.length}
-                next={fetchData}
-                hasMore={true}
-                loader={<h4>Loading...</h4>}
-                endMessage={
-                  <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
-                  </p>
-                }
+                loader={<Spinner width="80px" height="80px" center={false} />}
               >
                 <div className="list">
                   {books.map((book) => <Book key={book.sys.id} book={book} />)}
