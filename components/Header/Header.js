@@ -53,7 +53,7 @@ export const Header = () => {
         <div className={styles.header__content}>
           <Link href="/">
             <a>
-              <figure>
+              <figure onClick={() => setActiveLink({id: '', title: ''})}>
                 <Image 
                   src='/static/img/baskala-logo.png' 
                   width={150} 
