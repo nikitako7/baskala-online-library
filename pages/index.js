@@ -4,10 +4,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-spinner-animated';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Intro } from '../components/Intro/Intro';
 import Book from '../components/Book/Book';
-import { setBooks, filterSelector } from '../store/appSlice';
+import { setBooks } from '../store/appSlice';
 import "swiper/components/navigation/navigation.min.css";
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
@@ -32,7 +32,6 @@ export async function getStaticProps(params) {
 
 export default function Books({ books }) {
   const dispatch = useDispatch();
-  const filteredBooks = useSelector(filterSelector);
 
   useEffect(() => {
     dispatch(setBooks([...books]));
@@ -43,7 +42,7 @@ export default function Books({ books }) {
       <Intro />
       <div className="page-content">
         <div className="book-list">
-          <h3 className='label'>Самыми популярные</h3>
+          <h3 className='label'>Самые популярные</h3>
           <Swiper
             className='list'
             spaceBetween={50}

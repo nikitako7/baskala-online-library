@@ -51,7 +51,7 @@ export const getStaticProps = async ({ params }) => {
 
 export default function BookDetails({ book }) {
   if (!book) return <NotFound />;
-console.log(book);
+
   const { featuredImage, title, description, pdfFile, pages, publisher, topic, year, subtopic, author } = book.fields;
 
   return (
@@ -97,7 +97,11 @@ console.log(book);
       </div>
       <div className={styles.book__rightside}>
           <h2 className={styles.book__rightside_title}>{ title }</h2>
-          <h3 className={styles.book__rightside_author}><Link href={'/authors/' + author.fields.slug}><a className={styles.book__rightside_authorLink}>{ author.fields.fullName }</a></Link></h3>
+          <h3 className={styles.book__rightside_author}>
+            <Link href={'/authors/' + author.fields.slug}>
+              <a className={styles.book__rightside_authorLink}>{ author.fields.fullName }</a>
+            </Link>
+          </h3>
           <h3 className={styles.book__rightside_descriptionTitle}>About This Book</h3>
           <div className={styles.book__rightside_description}>{documentToReactComponents(description)}</div>
           <button className={styles.book__rightside_button} onClick={() => saveAs('https:' + pdfFile.fields.file.url, title)}>Download PDF</button>

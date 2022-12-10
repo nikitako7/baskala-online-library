@@ -92,6 +92,10 @@
             padding-right: 2rem;
         }
     }
+
+    &__burgerMenu {
+        display: none;
+    }
 }
 
 .active {
@@ -138,5 +142,32 @@
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1079px) {}
+@media screen and (min-width: 768px) and (max-width: 1079px) {
+    .header {
+        &__links {
+            display: none;
+        }
+        &__burgerMenu {
+            display: block;
+        }
+    }
+}
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .header {
+        padding: 10px;
+
+        &__links {
+            display: none;
+        }
+        &__burgerMenu {
+            display: block;
+        }
+        &__searchBar {
+            input {
+                font-size: 12px;
+                line-height: 8px;
+            }
+        }
+    }
+}

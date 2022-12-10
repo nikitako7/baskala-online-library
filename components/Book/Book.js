@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router'
 import styles from './Book.module.scss';
 
 export default function Book({ book }) {
   const { title, slug, author, thumbnail, year } = book.fields;
+  const router = useRouter();
   return (
     <div className={styles.book}>
       <div>
@@ -11,8 +13,8 @@ export default function Book({ book }) {
           <figure>
             <Image 
               src={'https:' + thumbnail.fields.file.url}
-              width={thumbnail.fields.file.details.image.width}
-              height={thumbnail.fields.file.details.image.height}
+              width={router.pathname === '/search' ? 300 : thumbnail.fields.file.details.image.width}
+              height={router.pathname === '/search' ? 450 : thumbnail.fields.file.details.image.height}
             />
           </figure>
         </Link>
