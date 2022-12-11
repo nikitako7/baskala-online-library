@@ -3,10 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 export const links = [
     {
         id: uuidv4(),
-        title: "Жанры",
-    },
-    {
-        id: uuidv4(),
         title: "Новинки",
         path: 'new'
     },

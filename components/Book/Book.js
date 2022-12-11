@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router'
@@ -8,7 +9,34 @@ import { useSelector } from 'react-redux';
 export default function Book({ book }) {
   const router = useRouter();
   const curLanguage = useSelector(languageSelector);
+  const [screen, setScreen] = useState(null);
   const { title, titleRu, titleTtlt, slug, author, thumbnail, year } = book.fields;
+
+  useEffect(() => {
+    setInterval(() => {
+      setScreen(window.screen.width)
+    }, 2000)
+  }, [])
+
+  const screenAndWidthHandler = () => {
+    switch (!!router.pathname || !!screen) {
+      case router.pathname === '/search':
+        return {
+          width: 300,
+          height: 450
+        };
+      case screen <= 767:
+        return {
+          width: 200,
+          height: 350
+        };
+      default:
+        break;
+    }
+
+    return false;
+  }
+
   return (
     <div className={styles.book}>
       <div>
@@ -16,8 +44,8 @@ export default function Book({ book }) {
           <figure>
             <Image 
               src={'https:' + thumbnail.fields.file.url}
-              width={router.pathname === '/search' ? 300 : thumbnail.fields.file.details.image.width}
-              height={router.pathname === '/search' ? 450 : thumbnail.fields.file.details.image.height}
+              width={screenAndWidthHandler().width || thumbnail.fields.file.details.image.width}
+              height={screenAndWidthHandler().height || thumbnail.fields.file.details.image.height}
             />
           </figure>
         </Link>

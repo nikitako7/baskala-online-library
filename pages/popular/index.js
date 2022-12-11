@@ -1,12 +1,10 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import { createClient } from 'contentful';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation } from 'swiper';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Spinner } from 'react-spinner-animated';
+import { languageSelector } from '../../store/languageSlice';
 import Book from '../../components/Book/Book';
-import "swiper/components/navigation/navigation.min.css";
-import 'swiper/swiper-bundle.min.css';
-import 'swiper/swiper.min.css';
-import 'react-spinner-animated/dist/index.css';
 
 export async function getStaticProps(params) {
     const client = createClient({
@@ -23,29 +21,24 @@ export async function getStaticProps(params) {
     }
   }
 
-  SwiperCore.use([Navigation]);
-
 export default ({ books }) => {
+    const curLanguage = useSelector(languageSelector);
+
     if (!books.length) return <NotFound />;
   
     return (
-    <div className="page-content">
-        <div className="book-list">
-          <h3 className='label'>Самые популярные</h3>
-          <Swiper
-            className='list'
-            spaceBetween={50}
-            slidesPerView={5}
-            navigation={true}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
-          >
-            {books.map((book) => (
-              <SwiperSlide key={book.sys.id}>
-                <Book book={book} />
-              </SwiperSlide>))}
-          </Swiper>
-        </div>
-    </div>
+        <div className="page-content">
+          <div className='book-list'>
+            <h3 className='label'> Популярное </h3>
+              <InfiniteScroll
+                dataLength={books.length}
+                loader={<Spinner width="80px" height="80px" center={false} />}
+              >
+                <div className="list">
+                  {books.map((book) => <Book key={book.sys.id} book={book} />)}
+                </div>
+              </InfiniteScroll>
+          </div>
+      </div>
     )
 }

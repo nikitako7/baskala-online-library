@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createClient } from 'contentful';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
@@ -57,7 +57,7 @@ export async function getStaticProps(params) {
 }
 
 export default function Books({ books }) {
-
+  const [screen, setScreen] = useState(null);
   const dispatch = useDispatch();
   const filteredBooks = useSelector(filterSelector);
   
@@ -66,6 +66,12 @@ export default function Books({ books }) {
   useEffect(() => {
     dispatch(setBooks([...books]));
   })
+
+  useEffect(() => {
+    setInterval(() => {
+      setScreen(window.screen.width)
+    }, 2000)
+  }, [])
   
   return (
     <>
@@ -80,7 +86,7 @@ export default function Books({ books }) {
           <Swiper
             className='list'
             spaceBetween={50}
-            slidesPerView={5}
+            slidesPerView={screen <= 767 ? 1 : 5}
             navigation={true}
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log('slide change')}

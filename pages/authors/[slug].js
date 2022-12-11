@@ -107,9 +107,10 @@ export default function BookDetails({ author, books }) {
                 {books.map((book) => {
                     if (fullName == book.fields.author.fields.fullName) {
                         return (
-                            <SwiperSlide key={author.sys.id}>
-                            <Book book={book} />
-                            </SwiperSlide>)
+                            <SwiperSlide key={book.fields.title}>
+                              <Book book={book} />
+                            </SwiperSlide>
+                          )
                     }
                     return;
                 })}
