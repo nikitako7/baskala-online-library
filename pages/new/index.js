@@ -20,21 +20,20 @@ export async function getStaticProps(params) {
   }
 
 export default ({ books }) => {
-  const popularBooks = books.filter((book) => book?.fields?.tags?.includes('Popular'));
-    // const curLanguage = useSelector(languageSelector);
-    // console.log(books);
-    if (!popularBooks.length) return <NotFound />;
+  const newBooks = books.filter((book) => book?.fields?.tags?.includes('New'));
+
+    if (!newBooks.length) return <NotFound />;
   
     return (
         <div className="page-content">
           <div className='book-list'>
             <h3 className='label'> Популярное </h3>
               <InfiniteScroll
-                dataLength={popularBooks.length}
+                dataLength={newBooks.length}
                 loader={<Spinner width="80px" height="80px" center={false} />}
               >
                 <div className="list">
-                  {popularBooks.map((book) => <Book key={book.sys.id} book={book} />)}
+                  {newBooks.map((book) => <Book key={book.sys.id} book={book} />)}
                 </div>
               </InfiniteScroll>
           </div>

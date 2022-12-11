@@ -72,6 +72,8 @@ export default function Books({ books }) {
       setScreen(window.screen.width)
     }, 2000)
   }, [])
+
+  console.log(books.filter((book) => !!book?.fields?.tags?.length));
   
   return (
     <>
@@ -83,7 +85,8 @@ export default function Books({ books }) {
             { curLanguage === 'ru' && 'Самые популярные' }
             { curLanguage === 'tt-lt' && 'Most popular' }
           </h3>
-          <Swiper
+          { !!books.length ? (
+            <Swiper
             className='list'
             spaceBetween={50}
             slidesPerView={screen <= 767 ? 1 : 5}
@@ -96,6 +99,7 @@ export default function Books({ books }) {
                 <Book book={book} />
               </SwiperSlide>))}
           </Swiper>
+          ) : <Spinner width="80px" height="80px" center={false} />}
         </div>
       </div>
       <div className="page-content">
