@@ -5,6 +5,8 @@ import NotFound from '../404';
 import styles from './book-slug.module.scss';
 import { saveAs } from 'file-saver';
 import Link from 'next/link';
+import { useSelector } from "react-redux";
+import { languageSelector } from '../../store/languageSlice';
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -52,7 +54,9 @@ export const getStaticProps = async ({ params }) => {
 export default function BookDetails({ book }) {
   if (!book) return <NotFound />;
 
-  const { featuredImage, title, description, pdfFile, pages, publisher, topic, year, subtopic, author } = book.fields;
+  const curLanguage = useSelector(languageSelector);
+
+  const { featuredImage, title, titleRu, titleTtlt, description, descriptionRu, descriptionTtlt, pdfFile, pages, publisher, publisherRu, publisherTtlt, topic, topicRu, topicTtlt, year, subtopic, subtopicRu, subtopicTtlt, author } = book.fields;
 
   return (
     <div className={styles.book}>
@@ -96,24 +100,39 @@ export default function BookDetails({ book }) {
         </div>
       </div>
       <div className={styles.book__rightside}>
-          <h2 className={styles.book__rightside_title}>{ title }</h2>
-          <h3 className={styles.book__rightside_author}>
-            <Link href={'/authors/' + author.fields.slug}>
-              <a className={styles.book__rightside_authorLink}>{ author.fields.fullName }</a>
-            </Link>
-          </h3>
+          <h2 className={styles.book__rightside_title}>
+            { curLanguage === 'tt' && title }
+            { curLanguage === 'ru' && titleRu }
+            { curLanguage === 'tt-lt' && titleTtlt }
+          </h2>
+          <h3 className={styles.book__rightside_author}><Link href={'/authors/' + author.fields.slug}><a className={styles.book__rightside_authorLink}>
+            { curLanguage === 'tt' && author.fields.fullName }
+            { curLanguage === 'ru' && author.fields.fullNameRu }
+            { curLanguage === 'tt-lt' && author.fields.fullNameTtlt }
+            </a></Link></h3>
           <h3 className={styles.book__rightside_descriptionTitle}>About This Book</h3>
-          <div className={styles.book__rightside_description}>{documentToReactComponents(description)}</div>
+          <div className={styles.book__rightside_description}>
+            { curLanguage === 'tt' && documentToReactComponents(description) }
+            { curLanguage === 'ru' && documentToReactComponents(descriptionRu) }
+            { curLanguage === 'tt-lt' && documentToReactComponents(descriptionTtlt) }</div>
           <button className={styles.book__rightside_button} onClick={() => saveAs('https:' + pdfFile.fields.file.url, title)}>Download PDF</button>
           <h3 className={styles.book__rightside_information}>Information</h3>
           <div className={styles.book__rightside_information}>
             <div className={styles.book__rightside_item}>
               <span className={styles.book__rightside_itemTitle}>Publisher:</span>
-              <span className={styles.book__rightside_itemText}>{publisher}</span>
+              <span className={styles.book__rightside_itemText}>
+              { curLanguage === 'tt' && publisher }
+              { curLanguage === 'ru' && publisherRu }
+              { curLanguage === 'tt-lt' && publisherTtlt }
+              </span>
             </div>
             <div className={styles.book__rightside_item}>
               <span className={styles.book__rightside_itemTitle}>Topic:</span>
-              <span className={styles.book__rightside_itemText}>{topic}</span>
+              <span className={styles.book__rightside_itemText}>
+              { curLanguage === 'tt' && topic }
+              { curLanguage === 'ru' && topicRu }
+              { curLanguage === 'tt-lt' && topicTtlt }
+              </span>
             </div>
             <div className={styles.book__rightside_item}>
               <span className={styles.book__rightside_itemTitle}>Year:</span>
@@ -121,7 +140,11 @@ export default function BookDetails({ book }) {
             </div>
             <div className={styles.book__rightside_item}>
               <span className={styles.book__rightside_itemTitle}>Subtopic:</span>
-              <span className={styles.book__rightside_itemText}>{subtopic}</span>
+              <span className={styles.book__rightside_itemText}>
+              { curLanguage === 'tt' && subtopic }
+              { curLanguage === 'ru' && subtopicRu }
+              { curLanguage === 'tt-lt' && subtopicTtlt }
+              </span>
             </div>
           </div>
       </div>

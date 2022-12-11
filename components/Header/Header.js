@@ -8,6 +8,14 @@ import { links, options } from '../../utils/index';
 import { bookSelector, setFilters } from '../../store/appSlice';
 import { Modal } from '../Modal/Modal';
 import { Genres } from '../Genres/Genres';
+import { languageSelector, setLanguage } from '../../store/languageSlice';
+import i18next from 'i18next';
+
+const genresHeaderAndFooter = {
+  width: '100%',
+  minHeight: '30px',
+  backgroundColor: 'lightgray'
+}
 
 export const Header = () => {
   const router = useRouter();
@@ -91,9 +99,12 @@ export const Header = () => {
               ))}
             </ul>
             <div className={styles.header__select}>
-              <select name="languages" id="languages">
+              <select name="languages" id="languages" onChange={(e) => {
+              dispatch(setLanguage(e.target.value));
+              return i18next.changeLanguage(e.target.value)
+            }}>
                 {options.map(({value, label}) => (
-                  <option key={value} value={value}>{label}</option>
+                  <option key={value} value={label}>{label}</option>
                 ))}
               </select>
             </div>

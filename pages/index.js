@@ -4,7 +4,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-spinner-animated';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { filterSelector } from '../store/appSlice';
+import { languageSelector } from '../store/languageSlice';
 import { Intro } from '../components/Intro/Intro';
 import Book from '../components/Book/Book';
 import { setBooks } from '../store/appSlice';
@@ -12,6 +14,31 @@ import "swiper/components/navigation/navigation.min.css";
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import 'react-spinner-animated/dist/index.css';
+import i18n from "i18next";
+import HttpApi from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import { initReactI18next } from "react-i18next";
+
+i18n
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .use(HttpApi )
+  .init({
+    supportedLngs: ['ru', 'tt', 'tt-lt'],
+    fallbackLng: "ru",
+    detection: {
+      order: ['cookie', 'htmlTag', 'localStorage', 'path', 'subdomain'],
+      caches: ['cookie']
+    },
+
+    backend: {
+      loadPath: '/assets/locales/{{lng}}/translation.json'
+    },
+
+    react: {
+      useSuspense: false 
+    }
+  });
 
 SwiperCore.use([Navigation]);
 
@@ -20,7 +47,6 @@ export async function getStaticProps(params) {
     space: process.env.CONTENTFUL_SPACE_ID,
     accessToken: process.env.CONTENTFUL_ACCESS_KEY , 
   });
-
   const res =  await client.getEntries({ content_type: 'book' });
 
   return {
@@ -31,7 +57,11 @@ export async function getStaticProps(params) {
 }
 
 export default function Books({ books }) {
+
   const dispatch = useDispatch();
+  const filteredBooks = useSelector(filterSelector);
+  
+  const curLanguage = useSelector(languageSelector);
 
   useEffect(() => {
     dispatch(setBooks([...books]));
@@ -42,7 +72,11 @@ export default function Books({ books }) {
       <Intro />
       <div className="page-content">
         <div className="book-list">
-          <h3 className='label'>Самые популярные</h3>
+          <h3 className='label'>
+            { curLanguage === 'tt' && 'Иң популяр' }
+            { curLanguage === 'ru' && 'Самые популярные' }
+            { curLanguage === 'tt-lt' && 'Most popular' }
+          </h3>
           <Swiper
             className='list'
             spaceBetween={50}
@@ -60,7 +94,11 @@ export default function Books({ books }) {
       </div>
       <div className="page-content">
           <div className='book-list'>
-            <h3 className='label'>Последние добавленные</h3>
+            <h3 className='label'>
+            { curLanguage === 'tt' && 'Cоңгы өстәлде' }
+            { curLanguage === 'ru' && 'Последние добавленные' }
+            { curLanguage === 'tt-lt' && 'Last added' }
+            </h3>
               <InfiniteScroll
                 dataLength={books.length}
                 loader={<Spinner width="80px" height="80px" center={false} />}

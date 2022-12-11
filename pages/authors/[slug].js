@@ -3,6 +3,8 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import Image from 'next/image';
 import NotFound from '../404';
 import Book from '../../components/Book/Book';
+import { useSelector } from "react-redux";
+import { languageSelector } from '../../store/languageSlice';
 import styles from './author-slug.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
@@ -60,7 +62,9 @@ export const getStaticProps = async ({ params }) => {
 export default function BookDetails({ author, books }) {
   if (!author) return <NotFound />;
 
-  const { fullName, photo, description } = author.fields;
+  const curLanguage = useSelector(languageSelector);
+
+  const { fullName, fullNameRu, fullNameTtlt, photo, description, descriptionRu, descriptionTtlt } = author.fields;
 
   return (
     <>
@@ -76,9 +80,17 @@ export default function BookDetails({ author, books }) {
                 </div>
             </div>
             <div className={styles.book__rightside}>
-                <h2 className={styles.book__rightside_title}>{ fullName }</h2>
+                <h2 className={styles.book__rightside_title}>
+                { curLanguage === 'tt' && fullName }
+                { curLanguage === 'ru' && fullNameRu }
+                { curLanguage === 'tt-lt' && fullNameTtlt }
+                </h2>
                 <h3 className={styles.book__rightside_descriptionTitle}>About This Author</h3>
-                <div className={styles.book__rightside_description}>{documentToReactComponents(description)}</div>
+                <div className={styles.book__rightside_description}>
+                  { curLanguage === 'tt' && documentToReactComponents(description) }
+                  { curLanguage === 'ru' && documentToReactComponents(descriptionRu) }
+                  { curLanguage === 'tt-lt' && documentToReactComponents(descriptionTtlt) }
+                </div>
             </div>
         </div>
         <div className="page-content">
