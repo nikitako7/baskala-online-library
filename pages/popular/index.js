@@ -1,8 +1,4 @@
-import React from 'react';
 import { createClient } from 'contentful';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { Spinner } from 'react-spinner-animated';
-import Book from '../../components/Book/Book';
 import { createPage } from '../../utils/index';
 
 export async function getStaticProps(params) {

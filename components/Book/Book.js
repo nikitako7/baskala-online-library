@@ -25,10 +25,10 @@ export default function Book({ book }) {
           width: 300,
           height: 450
         };
-      case screen <= 767:
+      case screen <= 1080:
         return {
           width: 200,
-          height: 350
+          height: 300
         };
       default:
         break;

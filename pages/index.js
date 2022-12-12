@@ -73,7 +73,18 @@ export default function Books({ books }) {
     }, 2000)
   }, [])
 
-  console.log(books.filter((book) => !!book?.fields?.tags?.length));
+  const slidesPerViewHandler = () => {
+    switch (!!screen) {
+      case screen >= 1440:
+        return 5;
+      case screen >= 768:
+        return 3;
+      case screen >= 350:
+        return 2;
+      default:
+        break;
+    }
+  }
   
   return (
     <>
@@ -88,8 +99,8 @@ export default function Books({ books }) {
           { !!books.length ? (
             <Swiper
             className='list'
-            spaceBetween={50}
-            slidesPerView={screen <= 767 ? 1 : 5}
+            spaceBetween={ screen >= 1080 ? 50 : 100}
+            slidesPerView={slidesPerViewHandler()}
             navigation={true}
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log('slide change')}
