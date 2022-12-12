@@ -40,3 +40,9 @@
         }
     }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1080px) {
+    .modal {
+        top: 80px;
+    }
+}

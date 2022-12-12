@@ -95,13 +95,18 @@ export const Header = () => {
     if (path) router.push(path);
   }
 
+  const reset = () => {
+    setActiveLink({id: '', title: ''})
+    setOpen(false);
+  }
+
   return (
     <>
       <header className={styles.header}>
         <div className={styles.header__content}>
           <Link href="/">
             <a>
-              <figure className={styles.header__logo} onClick={() => setActiveLink({id: '', title: ''})}>
+              <figure className={styles.header__logo} onClick={() => reset()}>
                 <img src='/static/img/baskala-logo.png' />
               </figure>
             </a>
