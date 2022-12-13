@@ -9,7 +9,6 @@ import { bookSelector, setFilters } from '../../store/appSlice';
 import { Modal } from '../Modal/Modal';
 import { Genres } from '../Genres/Genres';
 import { languageSelector, setLanguage } from '../../store/languageSlice';
-import i18next from 'i18next';
 
 const genresHeaderAndFooter = {
   width: '100%',
@@ -24,6 +23,7 @@ export const Header = () => {
   const [activeLink, setActiveLink] = useState({id: '', title: ''});
   const [search, setSearch] = useState('');
   const books = useSelector(bookSelector);
+  const curLanguage = useSelector(languageSelector);
 
   const bookFilter = (str, strFirstPart, strSecondPart) => ( 
     str?.toLowerCase() === search.toLowerCase() || 
@@ -89,9 +89,10 @@ export const Header = () => {
     setSearch('');
   }
 
-  const onClickHandler = (id, title, path) => {
-    setActiveLink({id, title});
-
+  const onClickHandler = (id, title, titleRu, titleTtlt, path) => {
+    const curTitle = (curLanguage === 'tt' && title) || (curLanguage === 'ru' && titleRu) || (curLanguage === 'tt-lt' && titleTtlt);
+    console.log(curTitle)
+    setActiveLink({id, curTitle});
     if (path) router.push(path);
   }
 
@@ -119,26 +120,25 @@ export const Header = () => {
                   onChange={(e) => setSearch(e.target.value)} 
                   type="text" 
                   title='Searchbar' 
-                  placeholder='Искать книгу по названию, авторе, теме' 
+                  placeholder={(curLanguage === 'tt' && 'Титул, автор, тема буенча китап эзләгез') || (curLanguage === 'ru' && 'Искать книгу по названию, автору, теме') || (curLanguage === 'tt-lt' && 'Search for books by title, author, or subject')}
                 />
             </form>
           </div>
           <nav className={styles.header__links}>
             <ul>
-              {links.map(({id, title, path}) => (
+              {links.map(({id, title, titleRu, titleTtlt, path}) => (
                 <li
                   className={activeLink.id === id ? styles.active : ''}
-                  onClick={() => onClickHandler(id, title, path)}
+                  onClick={() => onClickHandler(id, title, titleRu, titleTtlt, path)}
                   key={id}
                 >
-                  {title}
+                  {(curLanguage === 'tt' && title) || (curLanguage === 'ru' && titleRu) || (curLanguage === 'tt-lt' && titleTtlt)}
                 </li>
               ))}
             </ul>
             <div className={styles.header__select}>
               <select name="languages" id="languages" onChange={(e) => {
-                dispatch(setLanguage(e.target.value));
-                return i18next.changeLanguage(e.target.value)
+                return dispatch(setLanguage(e.target.value));
             }}>
                 {options.map(({value, label}) => (
                   <option key={value} value={label}>{label}</option>
