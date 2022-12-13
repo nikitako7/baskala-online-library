@@ -17,7 +17,7 @@ export async function getStaticProps(params) {
   }
 
 export default ({ books }) => {
-  const popularBooks = books.filter((book) => book?.fields?.tags?.includes('Popular'));
-  
-  return createPage(popularBooks, 'Популярное')
+  const newBooks = books.filter((book) => book?.fields?.tags?.includes('New'));
+
+  return createPage(newBooks, 'Новинки');
 }
