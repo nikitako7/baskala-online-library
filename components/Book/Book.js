@@ -9,6 +9,7 @@ export default function Book({ book }) {
   const router = useRouter();
   const curLanguage = useSelector(languageSelector);
   const { title, titleRu, titleTtlt, slug, author, thumbnail, year } = book.fields;
+  console.log(book)
   return (
     <div className={styles.book}>
       <div>

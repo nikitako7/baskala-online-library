@@ -6,6 +6,8 @@ import Book from '../../components/Book/Book';
 import { useSelector } from "react-redux";
 import { languageSelector } from '../../store/languageSlice';
 import styles from './author-slug.module.scss';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Spinner } from 'react-spinner-animated';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/components/navigation/navigation.min.css";
@@ -67,55 +69,74 @@ export default function BookDetails({ author, books }) {
   const { fullName, fullNameRu, fullNameTtlt, photo, description, descriptionRu, descriptionTtlt } = author.fields;
 
   return (
-    <>
-        <div className={styles.book}>
-            <div className={styles.book__leftside}>
-                <div className={styles.book__leftside_imageWrapper}>
+    <div className={styles.container}>
+        <div className={styles.author}>
+            <div className={styles.author__leftside}>
+                <div className={styles.author__leftside_imageWrapper}>
                     <Image 
                         src={'https:' + photo.fields.file.url}
                         width={photo.fields.file.details.image.width}
                         height={photo.fields.file.details.image.height}
-                        className={styles.book__leftside_image}
+                        className={styles.author__leftside_image}
                     />
                 </div>
             </div>
-            <div className={styles.book__rightside}>
-                <h2 className={styles.book__rightside_title}>
+            <div className={styles.author__rightside}>
+                <h2 className={styles.author__rightside_title}>
                 { curLanguage === 'tt' && fullName }
                 { curLanguage === 'ru' && fullNameRu }
                 { curLanguage === 'tt-lt' && fullNameTtlt }
                 </h2>
-                <h3 className={styles.book__rightside_descriptionTitle}>About This Author</h3>
-                <div className={styles.book__rightside_description}>
+                <h3 className={styles.author__rightside_descriptionTitle}>About This Author</h3>
+                <div className={styles.author__rightside_description}>
                   { curLanguage === 'tt' && documentToReactComponents(description) }
                   { curLanguage === 'ru' && documentToReactComponents(descriptionRu) }
                   { curLanguage === 'tt-lt' && documentToReactComponents(descriptionTtlt) }
                 </div>
             </div>
         </div>
-        <div className="page-content">
-            <div className="book-list">
+        <div>
+            <div className="">
                 <h3 className='label'>Книги автора</h3>
-                <Swiper
-                className='list'
-                spaceBetween={50}
-                slidesPerView={5}
-                navigation={true}
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log('slide change')}
+                {/* <Swiper
+                  spaceBetween={50}
+                  slidesPerView={5}
+                  navigation={true}
+                  breakpoints={swiperBreakpoints}
+                  onSwiper={(swiper) => console.log(swiper)}
+                  onSlideChange={() => console.log('slide change')}
                 >
                 {books.map((book) => {
                     if (fullName == book.fields.author.fields.fullName) {
                         return (
                             <SwiperSlide key={author.sys.id}>
-                            <Book book={book} />
+                              <div className={styles.swiperWrapper}>
+                                <Book book={book} />
+                              </div>
                             </SwiperSlide>)
                     }
                     return;
                 })}
-                </Swiper>
+                </Swiper> */}
+                <InfiniteScroll
+                  dataLength={books.length}
+                  loader={<Spinner width="80px" height="80px" center={false} />}
+                >
+                  <div className={styles.books}>
+                    {books.map((book) => {
+                      if (fullName == book.fields.author.fields.fullName) {
+                        return (
+                          <div className={styles.wrapper}>
+                            <Book key={book.sys.id} book={book} />
+                          </div>)
+                      }
+                      return;
+                    })
+                    }
+                  </div>
+              </InfiniteScroll>
             </div>
         </div>
-    </>
+    </div>
   )
 }

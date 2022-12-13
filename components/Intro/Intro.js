@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './Intro.module.scss';
 import { useSelector } from "react-redux";
 import { languageSelector } from '../../store/languageSlice';
@@ -31,11 +32,13 @@ export const Intro = () => {
             pellentesque enim sit amet, laoreet lorem.
           </p>
           <div className={styles.intro__buttonContainer}>
-              <button>
-              { curLanguage === 'tt' && 'Күбрәк белү өчен' }
-              { curLanguage === 'ru' && 'Узнать больше' }
-              { curLanguage === 'tt-lt' && 'Learn more' }
-              </button>
+              <Link href={'/aboutUs'}>
+                <button>
+                  { curLanguage === 'tt' && 'Күбрәк белү өчен' }
+                  { curLanguage === 'ru' && 'Узнать больше' }
+                  { curLanguage === 'tt-lt' && 'Learn more' }
+                </button>
+              </Link>
           </div>
         </div>
         <div className={styles.intro__right}>
