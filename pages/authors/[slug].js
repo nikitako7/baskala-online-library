@@ -114,6 +114,10 @@ export default function BookDetails({ author, books }) {
                                 <Book book={book} />
                               </div>
                             </SwiperSlide>)
+                            <SwiperSlide key={book.fields.title}>
+                              <Book book={book} />
+                            </SwiperSlide>
+                          )
                     }
                     return;
                 })}

@@ -25,16 +25,51 @@ export const Header = () => {
   const books = useSelector(bookSelector);
   const curLanguage = useSelector(languageSelector);
 
+  const bookFilter = (str, strFirstPart, strSecondPart) => ( 
+    str?.toLowerCase() === search.toLowerCase() || 
+    strFirstPart?.toLowerCase() === search.toLowerCase() ||
+    strSecondPart?.toLowerCase() === search.toLowerCase()
+  )
+
+  const bookTopicFilter = (str) => str.includes(search.toLowerCase());
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const copyBooks = [...books];
-    const findByTitle = copyBooks.filter(({ fields: { title } }) => title === search);
+    const findByTitle = copyBooks.filter(({ fields: { title, titleRu, titleTtlt } }) => {
+      const [firstPart, secondPart] = title.split(' ');
+      const [firstPartRu, secondPartRU] = titleRu.split(' ');
+      const [firstPartTtlt, secondPartTtlt] = titleTtlt.split(' ');
+
+      return (
+        bookFilter(title, firstPart, secondPart) || 
+        bookFilter(titleRu, firstPartRu, secondPartRU) ||
+        bookFilter(titleTtlt, firstPartTtlt, secondPartTtlt)
+      )
+    });
     const findByAuthor = copyBooks.find(
-      ({ fields: { author: { fields: { fullName }}}}) => fullName === search);
-    const findByTopic = copyBooks.filter(({ fields: { topic } }) => topic === search);
+      ({ fields: { author: { fields: { fullName, fullNameRu, fullNameTtlt }}}}) => {
+        const [name, fullname] = fullName.split(' ');
+        const [nameRu, fullnameRU] = fullNameRu.split(' ');
+        const [nameTtlt, fullnameTtlt] = fullNameTtlt.split(' ');
+
+        return (
+          bookFilter(fullName, name, fullname) ||
+          bookFilter(fullNameRu, nameRu, fullnameRU) ||
+          bookFilter(fullNameTtlt, nameTtlt, fullnameTtlt)
+        )
+      });
+    const findByTopic = copyBooks.filter(({ fields: { topic, topicRu, topicTtlt } }) => {
+      const topicName = topic.toLowerCase().split(' ');
+      const topicNameRu = topicRu.toLowerCase().split(' ');
+      const topicNameTtlt = topicTtlt.toLowerCase().split(' ');
+
+      return bookTopicFilter(topicName) || bookTopicFilter(topicNameRu) || bookTopicFilter(topicNameTtlt)
+    });
 
     if (search.trim() && findByTitle.length) {
-      dispatch(setFilters([...findByTitle]))
+      dispatch(setFilters([...findByTitle]));
+      router.push('/search');
     }
 
     if (search.trim() && findByAuthor) {
@@ -42,11 +77,16 @@ export const Header = () => {
     }
 
     if (search.trim() && findByTopic.length) {
-      dispatch(setFilters([...findByTopic]))
+      dispatch(setFilters([...findByTopic]));
+      router.push('/search');
+    }
+
+    if (!findByTitle.length && !findByAuthor && !findByTopic.length) {
+      console.log('404');
+      router.push('/404');
     }
 
     setSearch('');
-    !findByAuthor && router.push('/search');
   }
 
   const onClickHandler = (id, title, titleRu, titleTtlt, path) => {
@@ -56,28 +96,25 @@ export const Header = () => {
     if (path) router.push(path);
   }
 
+  const reset = () => {
+    setActiveLink({id: '', title: ''})
+    setOpen(false);
+  }
+
   return (
     <>
       <header className={styles.header}>
         <div className={styles.header__content}>
           <Link href="/">
             <a>
-              <figure onClick={() => setActiveLink({id: '', title: ''})}>
-                <Image 
-                  src='/static/img/baskala-logo.png' 
-                  width={150} 
-                  height={49}
-                />
+              <figure className={styles.header__logo} onClick={() => reset()}>
+                <img src='/static/img/baskala-logo.png' />
               </figure>
             </a>
           </Link>
           <div className={styles.header__searchBarContainer}>
             <form className={styles.header__searchBar} onSubmit={onSubmitHandler}>
-                <Image 
-                  src='/static/img/search-icon.svg' 
-                  width={24} 
-                  height={24}
-                />
+                <img src='/static/img/search-icon.svg' />
                 <input 
                   value={search} 
                   onChange={(e) => setSearch(e.target.value)} 
@@ -124,8 +161,7 @@ export const Header = () => {
           </figure>
         </div>
       </header>
-      {activeLink.title === 'Жанры' && <Genres activeLinkHandler={setActiveLink} />}
-      { open && <Modal /> }
+      { open && <Modal closeModal={setOpen} /> }
     </>
   )
 }

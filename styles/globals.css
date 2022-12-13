@@ -535,8 +535,8 @@ header h1 {
 }
 
 .label {
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 32px;
+    line-height: 36px;
     font-weight: 500;
     padding-bottom: 20px;
 }
@@ -572,4 +572,102 @@ header h1 {
 .spinner-container-regular {
     position: relative !important;
     left: 45% !important;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1080px) {
+    .page-content {
+        padding: 0;
+        margin: 20px auto 50px;
+    }
+
+    .label {
+        text-align: center;
+        font-size: 24px;
+        line-height: 28px;
+    }
+
+    .book-list {
+        padding: 0px;
+    }
+
+    .swiper-slide-active {
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .swiper-slide {
+        display: flex !important;
+        justify-content: center !important;
+        margin-right: 30px !important;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none !important;
+    }
+
+    .list {
+        padding: 0 10px;
+        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .swiper-container {
+        padding: 0 20px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .page-content {
+        padding: 0;
+        margin: 0 auto 50px;
+    }
+
+    .book-list {
+        padding: 0;
+    }
+
+    .label {
+        text-align: center;
+        padding: 20px 0 30px;
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .swiper-slide-active {
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .swiper-slide {
+        display: flex !important;
+        justify-content: center !important;
+        margin-right: 30px !important;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none !important;
+    }
+
+    .swiper-wrapper {
+        justify-content: center !important;
+    }
+
+    .swiper-slide {
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .list {
+        padding: 0 10px;
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .swiper-container {
+        padding: 0 10px !important;
+    }
 }
