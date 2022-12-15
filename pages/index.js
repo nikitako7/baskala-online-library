@@ -14,31 +14,6 @@ import "swiper/components/navigation/navigation.min.css";
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import 'react-spinner-animated/dist/index.css';
-import i18n from "i18next";
-import HttpApi from 'i18next-http-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import { initReactI18next } from "react-i18next";
-
-i18n
-  .use(initReactI18next)
-  .use(LanguageDetector)
-  .use(HttpApi )
-  .init({
-    supportedLngs: ['ru', 'tt', 'tt-lt'],
-    fallbackLng: "ru",
-    detection: {
-      order: ['cookie', 'htmlTag', 'localStorage', 'path', 'subdomain'],
-      caches: ['cookie']
-    },
-
-    backend: {
-      loadPath: '/assets/locales/{{lng}}/translation.json'
-    },
-
-    react: {
-      useSuspense: false 
-    }
-  });
 
 SwiperCore.use([Navigation]);
 
