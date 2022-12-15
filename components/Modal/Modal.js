@@ -5,12 +5,12 @@ import styles from './Modal.module.scss';
 import { languageSelector, setLanguage } from '../../store/languageSlice';
 import { useDispatch, useSelector } from "react-redux";
 
-export const Modal = ({ closeModal }) => {
+export const Modal = ({ closeModal, setActiveLink }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const curLanguage = useSelector(languageSelector);
 
-  const onClickHandler = (path, title, titleRu, titleTtlt) => {
+  const onClickHandler = (id, path, title, titleRu, titleTtlt) => {
     const curTitle = (curLanguage === 'tt' && title) || (curLanguage === 'ru' && titleRu) || (curLanguage === 'tt-lt' && titleTtlt);
     setActiveLink({id, curTitle});
     closeModal(false);
@@ -23,7 +23,7 @@ export const Modal = ({ closeModal }) => {
         <nav className={styles.modal__links}>
           <ul>
             {links.map(({ id, title, titleRu, titleTtlt, path }) => (
-              <li key={id} onClick={() => onClickHandler(path, title, titleRu, titleTtlt)}>
+              <li key={id} onClick={() => onClickHandler(id, path, title, titleRu, titleTtlt)}>
                 { (curLanguage === 'tt' && title) || (curLanguage === 'ru' && titleRu) || (curLanguage === 'tt-lt' && titleTtlt) }
               </li>
             ))}
