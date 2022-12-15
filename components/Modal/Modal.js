@@ -10,7 +10,7 @@ export const Modal = ({ closeModal }) => {
   const dispatch = useDispatch();
   const curLanguage = useSelector(languageSelector);
 
-  const onClickHandler = (path) => {
+  const onClickHandler = (path, title, titleRu, titleTtlt) => {
     const curTitle = (curLanguage === 'tt' && title) || (curLanguage === 'ru' && titleRu) || (curLanguage === 'tt-lt' && titleTtlt);
     setActiveLink({id, curTitle});
     closeModal(false);
@@ -23,7 +23,7 @@ export const Modal = ({ closeModal }) => {
         <nav className={styles.modal__links}>
           <ul>
             {links.map(({ id, title, titleRu, titleTtlt, path }) => (
-              <li key={id} onClick={() => onClickHandler(path)}>
+              <li key={id} onClick={() => onClickHandler(path, title, titleRu, titleTtlt)}>
                 { (curLanguage === 'tt' && title) || (curLanguage === 'ru' && titleRu) || (curLanguage === 'tt-lt' && titleTtlt) }
               </li>
             ))}
