@@ -161,7 +161,7 @@ export const Header = () => {
           </figure>
         </div>
       </header>
-      { open && <Modal closeModal={setOpen} /> }
+      { open && <Modal closeModal={setOpen} setActiveLink={setActiveLink} /> }
     </>
   )
 }
