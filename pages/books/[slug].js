@@ -56,7 +56,7 @@ export default function BookDetails({ book }) {
 
   const curLanguage = useSelector(languageSelector);
 
-  const { featuredImage, title, titleRu, titleTtlt, description, descriptionRu, descriptionTtlt, pdfFile, pages, publisher, publisherRu, publisherTtlt, topic, topicRu, topicTtlt, year, subtopic, subtopicRu, subtopicTtlt, author } = book.fields;
+  const { featuredImage, title, titleRu, titleTtlt, description, descriptionRu, descriptionTtlt, pdfFile, pdfFileRu, pdfFileTtlt, pages, publisher, publisherRu, publisherTtlt, topic, topicRu, topicTtlt, year, subtopic, subtopicRu, subtopicTtlt, author } = book.fields;
 
   return (
     <div className={styles.book}>
@@ -115,7 +115,23 @@ export default function BookDetails({ book }) {
             { curLanguage === 'tt' && documentToReactComponents(description) }
             { curLanguage === 'ru' && documentToReactComponents(descriptionRu) }
             { curLanguage === 'tt-lt' && documentToReactComponents(descriptionTtlt) }</div>
-          <button className={styles.book__rightside_button} onClick={() => saveAs('https:' + pdfFile.fields.file.url, title)}>Download PDF</button>
+          <div className={styles.book__btn_wrapper}>
+            {pdfFile && <button className={styles.book__rightside_button} onClick={() => saveAs('https:' + pdfFile.fields.file.url, title)}>
+              { curLanguage === 'tt' && 'Йөкләү - TT' }
+              { curLanguage === 'ru' && 'Скачать - TT'}
+              { curLanguage === 'tt-lt' && 'Download - TT' }
+            </button>}
+            {pdfFileRu && <button className={styles.book__rightside_button} onClick={() => saveAs('https:' + pdfFileRu.fields.file.url, title)}>
+              { curLanguage === 'tt' && 'Йөкләү - RU' }
+              { curLanguage === 'ru' && 'Скачать - RU'}
+              { curLanguage === 'tt-lt' && 'Download - RU' }
+            </button>}
+            {pdfFileTtlt && <button className={styles.book__rightside_button} onClick={() => saveAs('https:' + pdfFileTtlt.fields.file.url, title)}>
+              { curLanguage === 'tt' && 'Йөкләү - TTLT' }
+              { curLanguage === 'ru' && 'Скачать - TTLT'}
+              { curLanguage === 'tt-lt' && 'Download - TTLT' }
+            </button>}
+          </div>
           <h3 className={styles.book__rightside_information}>Information</h3>
           <div className={styles.book__rightside_information}>
             <div className={styles.book__rightside_item}>
