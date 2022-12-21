@@ -7,16 +7,16 @@ import Book from '../components/Book/Book';
 export const links = [
     {
         id: uuidv4(),
-        title: "Яңа",
+        title: "Яңалыклар",
         titleRu: "Новинки",
-        titleTtlt: "New",
+        titleTtlt: "Yanalikler",
         path: 'new'
     },
     {
         id: uuidv4(),
         title: "Популяр",
         titleRu: "Популярное",
-        titleTtlt: "Popular",
+        titleTtlt: "Populyar",
         path: '/popular'
     },
 ];

@@ -16,27 +16,25 @@ export const Intro = () => {
             <Image src='/static/img/baskala-logo.png' width={250} height={82} />
           </h2>
           <h1>
-            { curLanguage === 'tt' && 'китапны монда ' }
-            { curLanguage === 'ru' && 'ЧИТАТЬ КНИГУ ЗДЕСЬ' }
-            { curLanguage === 'tt-lt' && 'read book here' 
+            { curLanguage === 'tt' && 'Татар әдәбияты китапханәсе' }
+            { curLanguage === 'ru' && 'Библиотека татарской литературы' }
+            { curLanguage === 'tt-lt' && 'Tatar ädäbiyatı kitapxanäse' 
           }</h1>
           <h4>
-            { curLanguage === 'tt' && 'Иң яхшы Интернет Маркетинг Чишелешләре' }
-            { curLanguage === 'ru' && 'Лучшие решения для интернет-маркетинга' }
-            { curLanguage === 'tt-lt' && 'Best Internet Marketing Solutions' }</h4>
+            { curLanguage === 'tt' && 'Başqala белән татар язычуларының әсәрләрен өйрәник!' }
+            { curLanguage === 'ru' && 'Изучайте произведения татарских писателей вместе с Başqala!' }
+            { curLanguage === 'tt-lt' && 'Başqala belän tatar yazıçularınıñ äsärlären öyränik!' }</h4>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat
-            vulputate orci in semper. Aliquam elementum ligula vel magna molestie
-            facilisis. Morbi sodales lorem vel lobortis pharetra. Vivamus quis
-            aliquet lorem, id tempus sapien. Aliquam at risus accumsan,
-            pellentesque enim sit amet, laoreet lorem.
+            { curLanguage === 'tt' && 'Başqala проекты — ул онлайн татар әдәбияты китапханәсе. Сайтта татар язычуларының да шагыйренең әдәби әсәрләре җыелган һәм татар теленә тәрҗемә ителгән бөтендөнья әдәбияты классикасы шулай ук. Başqala белән милли мәдәнияткә чумып алыгыз әле!' }
+            { curLanguage === 'ru' && 'Проект Başqala - это онлайн библиотека татарской литературы. На сайте собраны произведения татарских писателей и поэтов, а также классика мировой литературы, переведенная на татарский язык. Погрузитесь в национальную культуру вместе с Başqala!' }
+            { curLanguage === 'tt-lt' && '”Başqala” proyektı — ul onlayn tatar ädäbiyatı kitapxanäse. Saytta tatar yazıçularınıñ da şağireneñ ädäbi äsärläre cıyılğan häm tatar telenä tärcemä itelgän bötendönya ädäbiyatı klassikası şulay uq. “Başqala” belän milli mädäniyätkä çumıp alığız äle!' }
           </p>
           <div className={styles.intro__buttonContainer}>
               <Link href={'/aboutUs'}>
                 <button>
-                  { curLanguage === 'tt' && 'Күбрәк белү өчен' }
-                  { curLanguage === 'ru' && 'Узнать больше' }
-                  { curLanguage === 'tt-lt' && 'Learn more' }
+                  { curLanguage === 'tt' && 'О нас' }
+                  { curLanguage === 'ru' && 'О нас' }
+                  { curLanguage === 'tt-lt' && 'О нас' }
                 </button>
               </Link>
           </div>

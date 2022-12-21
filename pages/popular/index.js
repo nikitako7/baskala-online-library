@@ -1,5 +1,7 @@
 import { createClient } from 'contentful';
 import { createPage } from '../../utils/index';
+import { useSelector } from "react-redux";
+import { languageSelector } from '../../store/languageSlice';
 
 export async function getStaticProps(params) {
     const client = createClient({
@@ -19,5 +21,8 @@ export async function getStaticProps(params) {
 export default ({ books }) => {
   const popularBooks = books.filter((book) => book?.fields?.tags?.includes('Popular'));
   
-  return createPage(popularBooks, 'Популярное')
+  const curLanguage = useSelector(languageSelector);
+  const title = (curLanguage === 'tt' && 'Популяр') || (curLanguage === 'ru' && 'Популярное') || (curLanguage === 'tt-lt' && 'Populyar');
+
+  return createPage(popularBooks, title)
 }
