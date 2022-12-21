@@ -32,9 +32,9 @@ export const Intro = () => {
           <div className={styles.intro__buttonContainer}>
               <Link href={'/aboutUs'}>
                 <button>
-                  { curLanguage === 'tt' && 'О нас' }
+                  { curLanguage === 'tt' && 'Безнең турында' }
                   { curLanguage === 'ru' && 'О нас' }
-                  { curLanguage === 'tt-lt' && 'О нас' }
+                  { curLanguage === 'tt-lt' && 'Besnen turynda' }
                 </button>
               </Link>
           </div>
