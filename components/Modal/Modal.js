@@ -9,6 +9,7 @@ export const Modal = ({ closeModal, setActiveLink }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const curLanguage = useSelector(languageSelector);
+  const modal = document.querySelector('.Modal_modal__3BwOn');
 
   const onClickHandler = (id, path, title, titleRu, titleTtlt) => {
     const curTitle = (curLanguage === 'tt' && title) || (curLanguage === 'ru' && titleRu) || (curLanguage === 'tt-lt' && titleTtlt);
@@ -18,7 +19,8 @@ export const Modal = ({ closeModal, setActiveLink }) => {
   };
 
   return (
-    <div className={styles.modal}>
+    <div className={styles.modal} onClick={() => closeModal(false)}>
+      <div className={styles.modal__content} onClick={e => e.stopPropagation()}>
         <h4 className={styles.modal__title}>{ (curLanguage === 'tt' && 'Телне сайлагыз') || (curLanguage === 'ru' && 'Выбрать язык') || (curLanguage === 'tt-lt' && 'Select Language') }</h4>
         <nav className={styles.modal__links}>
           <ul>
@@ -38,6 +40,7 @@ export const Modal = ({ closeModal, setActiveLink }) => {
             </div>
           </div>
         </nav>
+      </div>
     </div>
   )
 }

@@ -1,12 +1,16 @@
 .modal {
-    background-color: white;
     position: fixed;
     top: 50px;
     right: 0;
     left: 0;
+    bottom: 0;
     z-index: 4;
-    height: 300px;
-    border-bottom: 1px solid green;
+
+    &__content {
+        background-color: white;
+        height: 300px;
+        border-bottom: 1px solid green;
+    }
 
     &__links {
         display: flex;
