@@ -9,6 +9,7 @@ import "swiper/components/navigation/navigation.min.css";
 import 'swiper/swiper-bundle.min.css'
 import 'swiper/swiper.min.css'
 import Author from '../components/Author/Author';
+import styles from './Authors.module.scss';
 
 SwiperCore.use([Navigation]);
 
@@ -37,13 +38,16 @@ export default function Authors({ author }) {
 
   return (
     <div className="page-content">
-        <div className='book-list'>
-            <h3 className='label'>Авторы</h3>
+        <div className={styles.authors__wrapper}>
+            <h3 className='label'>
+              {curLanguage === "tt" && "Авторлар"}
+              {curLanguage === "ru" && "Авторы"}
+              {curLanguage === "tt-lt" && "Avtorlar"}</h3>
               <InfiniteScroll
                 dataLength={author.length}
                 loader={<Spinner width="80px" height="80px" center={false} />}
               >
-                <div className="list">
+                <div className={styles.authors__list}>
                   {author.map((a) => <Author key={a.sys.id} author={a} />)}
                 </div>
               </InfiniteScroll>
