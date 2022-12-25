@@ -1,0 +1,30 @@
+.authors {
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-width: 1200px;
+        padding: 20px;
+    }
+
+    &__list {
+        display: flex;
+        justify-content: baseline;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 30px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 1280px) {
+    .authors {
+        &__list {
+            justify-content: center;
+        }
+        &__wrapper {
+            padding: 0 20px;
+        }
+    }
+}

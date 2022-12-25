@@ -21,9 +21,9 @@ export const links = [
     },
     {
         id: uuidv4(),
-        title: "Авторы",
+        title: "Авторлар",
         titleRu: "Авторы",
-        titleTtlt: "Авторы",
+        titleTtlt: "Avtorlar",
         path: '/authors'
     },
 ];
