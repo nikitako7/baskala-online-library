@@ -82,7 +82,7 @@ export default function Books({ books }) {
           >
             {books.map((book) => (
               <SwiperSlide key={book.sys.id}>
-                <Book book={book} />
+                <Book book={book} id={book.sys.id} />
               </SwiperSlide>))}
           </Swiper>
           ) : <Spinner width="80px" height="80px" center={false} />}
