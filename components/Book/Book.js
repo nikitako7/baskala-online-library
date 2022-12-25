@@ -10,7 +10,7 @@ export default function Book({ book }) {
   const router = useRouter();
   const curLanguage = useSelector(languageSelector);
   const [screen, setScreen] = useState(null);
-  const { title, titleRu, titleTtlt, slug, author, thumbnail, year } = book.fields;
+  const { title, titleRu, titleTtlt, slug, author, thumbnail, featuredImage, year } = book.fields;
 
   useEffect(() => {
     setInterval(() => {
@@ -36,6 +36,8 @@ export default function Book({ book }) {
 
     return false;
   }
+  
+  const image = thumbnail || featuredImage;
 
   return (
     <div className={styles.book}>
@@ -43,9 +45,9 @@ export default function Book({ book }) {
         <Link href={'/books/' + slug}>
           <figure>
             <Image 
-              src={'https:' + thumbnail.fields.file.url}
-              width={screenAndWidthHandler().width || thumbnail.fields.file.details.image.width}
-              height={screenAndWidthHandler().height || thumbnail.fields.file.details.image.height}
+              src={'https:' + image.fields.file.url}
+              width={screenAndWidthHandler().width || image.fields.file.details.image.width}
+              height={screenAndWidthHandler().height || image.fields.file.details.image.height}
             />
           </figure>
         </Link>

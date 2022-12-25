@@ -3,7 +3,7 @@ import { AppState } from "./store";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
-    language: 'ru',
+    language: 'tt',
 };
 
 export const languageSlice = createSlice({

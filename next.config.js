@@ -1,7 +1,7 @@
 module.exports = {
   i18n: {
-    locales: ["ru", "tt", "tt-lt"],
-    defaultLocale: "ru",
+    locales: ["tt", "ru", "tt-lt"],
+    defaultLocale: "tt",
   },
   images: {
     domains: ['images.ctfassets.net'],
