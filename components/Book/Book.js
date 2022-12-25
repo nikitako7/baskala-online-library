@@ -58,7 +58,11 @@ export default function Book({ book }) {
           { curLanguage === 'ru' && titleRu }
           { curLanguage === 'tt-lt' && titleTtlt }
         </h4>
-        <p>{ author?.fields?.fullName }</p>
+        <p>
+          { curLanguage === 'tt' && author?.fields?.fullName }
+          { curLanguage === 'ru' && author?.fields?.fullNameRu }
+          { curLanguage === 'tt-lt' && author?.fields?.fullNameTtlt }
+        </p>
         <span>{ year }</span>
       </div> 
     </div>

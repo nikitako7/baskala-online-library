@@ -31,7 +31,6 @@ export async function getStaticProps() {
   }
 
 export default function Authors({ author }) {
-  console.log(author)
   if (!author) return <NotFound />;
 
   const curLanguage = useSelector(languageSelector);

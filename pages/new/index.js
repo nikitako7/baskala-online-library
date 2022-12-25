@@ -19,10 +19,8 @@ export async function getStaticProps(params) {
   }
 
 export default ({ books }) => {
-  const newBooks = books.filter((book) => book?.fields?.tags?.includes('New'));
-  
   const curLanguage = useSelector(languageSelector);
   const title = (curLanguage === 'tt' && 'Яңалыклар') || (curLanguage === 'ru' && 'Новинки') || (curLanguage === 'tt-lt' && 'Yanalikler');
 
-  return createPage(newBooks, title);
+  return createPage(books, title);
 }

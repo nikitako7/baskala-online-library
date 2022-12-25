@@ -3,6 +3,7 @@ import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-spinner-animated';
 import Book from '../components/Book/Book';
+import NotFound from '../pages/404';
 
 export const links = [
     {
