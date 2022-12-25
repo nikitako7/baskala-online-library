@@ -5,11 +5,13 @@ import { useRouter } from 'next/router'
 import styles from './Book.module.scss';
 import { languageSelector } from '../../store/languageSlice';
 import { useSelector } from 'react-redux';
+import countapi from 'countapi-js';
 
-export default function Book({ book }) {
+export default function Book({ id, book }) {
   const router = useRouter();
   const curLanguage = useSelector(languageSelector);
   const [screen, setScreen] = useState(null);
+  const [count, setCount] = useState(0);
   const { title, titleRu, titleTtlt, slug, author, thumbnail, featuredImage, year } = book.fields;
 
   useEffect(() => {
@@ -39,8 +41,23 @@ export default function Book({ book }) {
   
   const image = thumbnail || featuredImage;
 
+  const onClickHandler = () => {
+    const book = countapi.info(id)
+      .then(res => {
+        console.log(res);
+        return res.status === 404 ? 
+        countapi.create({ key: id, value: 1 })
+          .then((result) => console.log(result.value, 'create')
+        ) : 
+        countapi.hit(id)
+          .then(res => console.log(res, 'update'))
+      }
+      )
+      .catch(error => console.log(error, 'error'))
+  }
+
   return (
-    <div className={styles.book}>
+    <div className={styles.book} id={id} onClick={onClickHandler}>
       <div>
         <Link href={'/books/' + slug}>
           <figure>

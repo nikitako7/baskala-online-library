@@ -9,7 +9,6 @@ export const Modal = ({ closeModal, setActiveLink }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const curLanguage = useSelector(languageSelector);
-  const modal = document.querySelector('.Modal_modal__3BwOn');
 
   const onClickHandler = (id, path, title, titleRu, titleTtlt) => {
     const curTitle = (curLanguage === 'tt' && title) || (curLanguage === 'ru' && titleRu) || (curLanguage === 'tt-lt' && titleTtlt);
