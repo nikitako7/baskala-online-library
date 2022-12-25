@@ -26,23 +26,31 @@ export default ({ books }) => {
   const popularBooks = useSelector(popularSelector);
   const popularCount = useSelector(popularCountSelector);
   const copybooks = [...popularBooks]
-  .filter((element) => {
+  .map((element) => {
     for(let { id, count } of popularCount) {
-      if (element.sys.id === id) {
-        return element
+      if (id === element.sys.id) {
+        return {...element, count}
       }
     }
-  });
+  }).sort((a, b) => b.count - a.count);
 
   useEffect(() => {
-    books.forEach(async (book) => {
+    let cancel = false;
+
+    books.forEach( async(book) => {
+      if (cancel) {
+        return
+      }
       const bookCount = await countapi.info(book.sys.id);
-      console.log(bookCount);
       if (bookCount.value) {
         dispatch(setPopularCount({id: book.sys.id, count: bookCount.value}))
         dispatch(setPopular(book));
       }
     });
+
+    return () => { 
+      cancel = true;
+    }
   }, [])
 
   let popular = copybooks.filter(({ sys: { id } }, index, self) =>
@@ -50,6 +58,8 @@ export default ({ books }) => {
       t.sys.id === id
     ))
   )
+
+  console.log(popular.slice(0, 15), 'popular.slice(0, 15)');
   
   const curLanguage = useSelector(languageSelector);
   const title = (curLanguage === 'tt' && 'Популяр') || (curLanguage === 'ru' && 'Популярное') || (curLanguage === 'tt-lt' && 'Populyar');
