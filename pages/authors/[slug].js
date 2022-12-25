@@ -115,7 +115,7 @@ export default function BookDetails({ author, books }) {
                       if (fullName == book.fields.author.fields.fullName) {
                         return (
                           <div className={styles.wrapper}>
-                            <Book key={book.sys.id} book={book} />
+                            <Book key={book.sys.id} id={book.sys.id} book={book} />
                           </div>)
                       }
                       return;
