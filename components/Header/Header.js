@@ -7,14 +7,7 @@ import styles from './Header.module.scss';
 import { links, options } from '../../utils/index';
 import { bookSelector, setFilters } from '../../store/appSlice';
 import { Modal } from '../Modal/Modal';
-import { Genres } from '../Genres/Genres';
 import { languageSelector, setLanguage } from '../../store/languageSlice';
-
-const genresHeaderAndFooter = {
-  width: '100%',
-  minHeight: '30px',
-  backgroundColor: 'lightgray'
-}
 
 export const Header = () => {
   const router = useRouter();

@@ -100,7 +100,7 @@ export default function Books({ books }) {
                 loader={<Spinner width="80px" height="80px" center={false} />}
               >
                 <div className="list">
-                  {books.map((book) => <Book key={book.sys.id} book={book} />)}
+                  {books.map((book) => <Book key={book.sys.id} id={book.sys.id} book={book} />)}
                 </div>
               </InfiniteScroll>
           </div>
