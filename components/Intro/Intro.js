@@ -34,7 +34,7 @@ export const Intro = () => {
                 <button>
                   { curLanguage === 'tt' && 'Безнең турында' }
                   { curLanguage === 'ru' && 'О нас' }
-                  { curLanguage === 'tt-lt' && 'Besnen turynda' }
+                  { curLanguage === 'tt-lt' && 'Bezneñ turında' }
                 </button>
               </Link>
           </div>

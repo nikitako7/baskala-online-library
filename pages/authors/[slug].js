@@ -75,8 +75,8 @@ export default function BookDetails({ author, books }) {
                 <div className={styles.author__leftside_imageWrapper}>
                     <Image 
                         src={'https:' + photo.fields.file.url}
-                        width={photo.fields.file.details.image.width}
-                        height={photo.fields.file.details.image.height}
+                        width={'260'}
+                        height={'390'}
                         className={styles.author__leftside_image}
                     />
                 </div>
@@ -97,31 +97,11 @@ export default function BookDetails({ author, books }) {
         </div>
         <div>
             <div className="">
-                <h3 className='label'>Книги автора</h3>
-                {/* <Swiper
-                  spaceBetween={50}
-                  slidesPerView={5}
-                  navigation={true}
-                  breakpoints={swiperBreakpoints}
-                  onSwiper={(swiper) => console.log(swiper)}
-                  onSlideChange={() => console.log('slide change')}
-                >
-                {books.map((book) => {
-                    if (fullName == book.fields.author.fields.fullName) {
-                        return (
-                            <SwiperSlide key={author.sys.id}>
-                              <div className={styles.swiperWrapper}>
-                                <Book book={book} />
-                              </div>
-                            </SwiperSlide>)
-                            <SwiperSlide key={book.fields.title}>
-                              <Book book={book} />
-                            </SwiperSlide>
-                          )
-                    }
-                    return;
-                })}
-                </Swiper> */}
+                <h3 className='label'>
+                  { curLanguage === 'tt' && 'Авторнын китаплары' }
+                  { curLanguage === 'ru' && 'Книги автора' }
+                  { curLanguage === 'tt-lt' && 'Avtornin kitaplari' }
+                </h3>
                 <InfiniteScroll
                   dataLength={books.length}
                   loader={<Spinner width="80px" height="80px" center={false} />}

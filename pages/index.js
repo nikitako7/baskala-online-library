@@ -69,7 +69,7 @@ export default function Books({ books }) {
           <h3 className='label'>
             { curLanguage === 'tt' && 'Иң популяр' }
             { curLanguage === 'ru' && 'Самые популярные' }
-            { curLanguage === 'tt-lt' && 'In populyar' }
+            { curLanguage === 'tt-lt' && 'İñ populyar' }
           </h3>
           { !!books.length ? (
             <Swiper
@@ -91,9 +91,9 @@ export default function Books({ books }) {
       <div className="page-content">
           <div className='book-list'>
             <h3 className='label'>
-            { curLanguage === 'tt' && 'Иң соңгы өстәлган' }
+            { curLanguage === 'tt' && 'Иң соңгы өстәлгән' }
             { curLanguage === 'ru' && 'Последние добавленные' }
-            { curLanguage === 'tt-lt' && 'In sonği östälgan' }
+            { curLanguage === 'tt-lt' && 'İñ soñğı östälgän' }
             </h3>
               <InfiniteScroll
                 dataLength={books.length}

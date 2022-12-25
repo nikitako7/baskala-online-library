@@ -19,6 +19,13 @@ export const links = [
         titleTtlt: "Populyar",
         path: '/popular'
     },
+    {
+        id: uuidv4(),
+        title: "Авторы",
+        titleRu: "Авторы",
+        titleTtlt: "Авторы",
+        path: '/authors'
+    },
 ];
 
 export const genres = [

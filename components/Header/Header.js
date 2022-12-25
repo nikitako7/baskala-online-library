@@ -91,7 +91,6 @@ export const Header = () => {
 
   const onClickHandler = (id, title, titleRu, titleTtlt, path) => {
     const curTitle = (curLanguage === 'tt' && title) || (curLanguage === 'ru' && titleRu) || (curLanguage === 'tt-lt' && titleTtlt);
-    console.log(curTitle)
     setActiveLink({id, curTitle});
     if (path) router.push(path);
   }
