@@ -87,7 +87,11 @@ export default function BookDetails({ author, books }) {
                 { curLanguage === 'ru' && fullNameRu }
                 { curLanguage === 'tt-lt' && fullNameTtlt }
                 </h2>
-                <h3 className={styles.author__rightside_descriptionTitle}>About This Author</h3>
+                <h3 className={styles.author__rightside_descriptionTitle}>
+                  { curLanguage === 'tt' && 'Бу автор турында' }
+                  { curLanguage === 'ru' && 'Об авторе' }
+                  { curLanguage === 'tt-lt' && 'Bu avtor turynda' }
+                </h3>
                 <div className={styles.author__rightside_description}>
                   { curLanguage === 'tt' && documentToReactComponents(description) }
                   { curLanguage === 'ru' && documentToReactComponents(descriptionRu) }
