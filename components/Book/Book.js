@@ -11,13 +11,14 @@ export default function Book({ id, book }) {
   const router = useRouter();
   const curLanguage = useSelector(languageSelector);
   const [screen, setScreen] = useState(null);
-  const [count, setCount] = useState(0);
   const { title, titleRu, titleTtlt, slug, author, thumbnail, featuredImage, year } = book.fields;
 
   useEffect(() => {
-    setInterval(() => {
+    const timer = setInterval(() => {
       setScreen(window.screen.width)
     }, 2000)
+
+    return () => clearInterval(timer)
   }, [])
 
   const screenAndWidthHandler = () => {
@@ -51,8 +52,7 @@ export default function Book({ id, book }) {
         ) : 
         countapi.hit(id)
           .then(res => console.log(res, 'update'))
-      }
-      )
+      })
       .catch(error => console.log(error, 'error'))
   }
 

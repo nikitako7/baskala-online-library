@@ -26,7 +26,7 @@ export default () => {
           </InfiniteScroll>
         ) : (
           <div className="list-filtered">
-            {filteredBooks.map((book) => <Book key={book.sys.id} book={book} />)}
+            {filteredBooks.map((book) => <Book key={book.sys.id} id={book.sys.id} book={book} />)}
           </div>
         )}
       </div>
