@@ -110,7 +110,10 @@ export default function BookDetails({ book }) {
             { curLanguage === 'ru' && author.fields.fullNameRu }
             { curLanguage === 'tt-lt' && author.fields.fullNameTtlt }
             </a></Link></h3>
-          <h3 className={styles.book__rightside_descriptionTitle}>About This Book</h3>
+          <h3 className={styles.book__rightside_descriptionTitle}>
+              { curLanguage === 'tt' && 'Китап турында' }
+              { curLanguage === 'ru' && 'О книге'}
+              { curLanguage === 'tt-lt' && 'Kitap turynda' }</h3>
           <div className={styles.book__rightside_description}>
             { curLanguage === 'tt' && documentToReactComponents(description) }
             { curLanguage === 'ru' && documentToReactComponents(descriptionRu) }
@@ -132,10 +135,18 @@ export default function BookDetails({ book }) {
               { curLanguage === 'tt-lt' && 'Download - TTLT' }
             </button>}
           </div>
-          <h3 className={styles.book__rightside_information}>Information</h3>
+          <h3 className={styles.book__rightside_information}>
+              { curLanguage === 'tt' && 'Мәгълүмат' }
+              { curLanguage === 'ru' && 'Информация'}
+              { curLanguage === 'tt-lt' && 'Mağlumat' }
+          </h3>
           <div className={styles.book__rightside_information}>
             <div className={styles.book__rightside_item}>
-              <span className={styles.book__rightside_itemTitle}>Publisher:</span>
+              <span className={styles.book__rightside_itemTitle}>
+                { curLanguage === 'tt' && 'Автор:' }
+                { curLanguage === 'ru' && 'Издатель:'}
+                { curLanguage === 'tt-lt' && 'Avtor:' }
+              </span>
               <span className={styles.book__rightside_itemText}>
               { curLanguage === 'tt' && publisher }
               { curLanguage === 'ru' && publisherRu }
@@ -143,7 +154,11 @@ export default function BookDetails({ book }) {
               </span>
             </div>
             <div className={styles.book__rightside_item}>
-              <span className={styles.book__rightside_itemTitle}>Topic:</span>
+              <span className={styles.book__rightside_itemTitle}>
+                { curLanguage === 'tt' && 'Тема:' }
+                { curLanguage === 'ru' && 'Тема:' }
+                { curLanguage === 'tt-lt' && 'Tema:' }
+              </span>
               <span className={styles.book__rightside_itemText}>
               { curLanguage === 'tt' && topic }
               { curLanguage === 'ru' && topicRu }
@@ -151,11 +166,19 @@ export default function BookDetails({ book }) {
               </span>
             </div>
             <div className={styles.book__rightside_item}>
-              <span className={styles.book__rightside_itemTitle}>Year:</span>
+              <span className={styles.book__rightside_itemTitle}>
+                { curLanguage === 'tt' && 'Год:' }
+                { curLanguage === 'ru' && 'Ел:' }
+                { curLanguage === 'tt-lt' && 'Yel:' }
+              </span>
               <span className={styles.book__rightside_itemText}>{year}</span>
             </div>
             <div className={styles.book__rightside_item}>
-              <span className={styles.book__rightside_itemTitle}>Subtopic:</span>
+              <span className={styles.book__rightside_itemTitle}>
+                { curLanguage === 'tt' && 'Субтопик:' }
+                { curLanguage === 'ru' && 'Субтопик:' }
+                { curLanguage === 'tt-lt' && 'Subtopic:' }
+              </span>
               <span className={styles.book__rightside_itemText}>
               { curLanguage === 'tt' && subtopic }
               { curLanguage === 'ru' && subtopicRu }
