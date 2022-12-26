@@ -18,8 +18,8 @@ export const Intro = () => {
           <h1>
             { curLanguage === 'tt' && 'Татар әдәбияты китапханәсе' }
             { curLanguage === 'ru' && 'Библиотека татарской литературы' }
-            { curLanguage === 'tt-lt' && 'Tatar ädäbiyatı kitapxanäse' 
-          }</h1>
+            { curLanguage === 'tt-lt' && 'TATAR ÄDÄBİYATI KİTAPXANÄSE' }
+          </h1>
           <h4>
             { curLanguage === 'tt' && 'Başqala белән татар язычуларының әсәрләрен өйрәник!' }
             { curLanguage === 'ru' && 'Изучайте произведения татарских писателей вместе с Başqala!' }

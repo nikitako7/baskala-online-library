@@ -112,7 +112,7 @@ export const Header = () => {
                   onChange={(e) => setSearch(e.target.value)} 
                   type="text" 
                   title='Searchbar' 
-                  placeholder={(curLanguage === 'tt' && 'Титул, автор, тема буенча китап эзләгез') || (curLanguage === 'ru' && 'Искать книгу по названию, автору, теме') || (curLanguage === 'tt-lt' && 'Search for books by title, author, or subject')}
+                  placeholder={(curLanguage === 'tt' && 'Китапны исеме, авторы, темасы буенча эзләү') || (curLanguage === 'ru' && 'Искать книгу по названию, автору, теме') || (curLanguage === 'tt-lt' && 'Kitapnı iseme, avtorı, teması buyınça ezläw')}
                 />
             </form>
           </div>

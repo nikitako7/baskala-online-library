@@ -90,7 +90,7 @@ export default function BookDetails({ author, books }) {
                 <h3 className={styles.author__rightside_descriptionTitle}>
                   { curLanguage === 'tt' && 'Бу автор турында' }
                   { curLanguage === 'ru' && 'Об авторе' }
-                  { curLanguage === 'tt-lt' && 'Bu avtor turynda' }
+                  { curLanguage === 'tt-lt' && 'Bu avtor turında' }
                 </h3>
                 <div className={styles.author__rightside_description}>
                   { curLanguage === 'tt' && documentToReactComponents(description) }
