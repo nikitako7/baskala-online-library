@@ -167,8 +167,8 @@ export default function BookDetails({ book }) {
             </div>
             <div className={styles.book__rightside_item}>
               <span className={styles.book__rightside_itemTitle}>
-                { curLanguage === 'tt' && 'Год:' }
-                { curLanguage === 'ru' && 'Ел:' }
+                { curLanguage === 'tt' && 'Ел:' }
+                { curLanguage === 'ru' && 'Год:' }
                 { curLanguage === 'tt-lt' && 'Yel:' }
               </span>
               <span className={styles.book__rightside_itemText}>{year}</span>
