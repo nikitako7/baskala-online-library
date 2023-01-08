@@ -11,7 +11,7 @@ const AboutUs = () => {
       <h2 className={styles.about__title}>
         {curLanguage === "tt" && "Бу автор турында"}
         {curLanguage === "ru" && "Об авторе"}
-        {curLanguage === "tt-lt" && "Bu avtor turynda"}
+        {curLanguage === "tt-lt" && "Bu avtor turında"}
       </h2>
       <div>
         <p className={styles.mail}>

@@ -77,7 +77,10 @@ export default function BookDetails({ book }) {
               height='24'
               className={styles.book__leftside_icon}
             />
-            <span>{pages} pages</span>
+            <span>{pages} { curLanguage === 'tt' && 'бит' }
+              { curLanguage === 'ru' && 'cтр' }
+              { curLanguage === 'tt-lt' && 'bit' }
+            </span>
           </div>
           <div className={styles.book__leftside_item}>
             <Image 
@@ -86,16 +89,11 @@ export default function BookDetails({ book }) {
               height='24'
               className={styles.book__leftside_icon}
             />
-            <span>English</span>
-          </div>
-          <div className={styles.book__leftside_item}>
-            <Image 
-              src='/static/img/checked.png'
-              width='24'
-              height='24'
-              className={styles.book__leftside_icon}
-            />
-            <span>Available on iOS & Android</span>
+            <span>
+              { pdfFile && 'Татар ' }
+              { pdfFileRu && 'Русский ' }
+              { pdfFileTtlt && 'Tatar' }
+            </span>
           </div>
         </div>
       </div>
