@@ -16,7 +16,7 @@ export const Intro = () => {
             <Image src='/static/img/baskala-logo.png' width={250} height={82} />
           </h2>
           <h1>
-            { curLanguage === 'tt' && 'Татар әдәбияты китапханәсе' }
+            { curLanguage === 'tt' && 'Татар әдәбияте китапханәсе' }
             { curLanguage === 'ru' && 'Библиотека татарской литературы' }
             { curLanguage === 'tt-lt' && 'TATAR ÄDÄBİYATI KİTAPXANÄSE' }
           </h1>
@@ -25,7 +25,7 @@ export const Intro = () => {
             { curLanguage === 'ru' && 'Изучайте произведения татарских писателей вместе с Başqala!' }
             { curLanguage === 'tt-lt' && 'Başqala belän tatar yazıçularınıñ äsärlären öyränik!' }</h4>
           <p>
-            { curLanguage === 'tt' && 'Başqala проекты — ул онлайн татар әдәбияты китапханәсе. Сайтта татар язычуларының да шагыйренең әдәби әсәрләре җыелган һәм татар теленә тәрҗемә ителгән бөтендөнья әдәбияты классикасы шулай ук. Başqala белән милли мәдәнияткә чумып алыгыз әле!' }
+            { curLanguage === 'tt' && 'Başqala проекты — ул онлайн татар әдәбияты китапханәсе. Сайтта татар язычуларының Һәм шагыйрьләрнең әдәби әсәрләре җыелган һәм татар теленә тәрҗемә ителгән бөтендөнья әдәбияты классикасы шулай ук. Başqala белән милли мәдәнияткә чумып алыгыз әле!' }
             { curLanguage === 'ru' && 'Проект Başqala - это онлайн библиотека татарской литературы. На сайте собраны произведения татарских писателей и поэтов, а также классика мировой литературы, переведенная на татарский язык. Погрузитесь в национальную культуру вместе с Başqala!' }
             { curLanguage === 'tt-lt' && '”Başqala” proyektı — ul onlayn tatar ädäbiyatı kitapxanäse. Saytta tatar yazıçularınıñ da şağireneñ ädäbi äsärläre cıyılğan häm tatar telenä tärcemä itelgän bötendönya ädäbiyatı klassikası şulay uq. “Başqala” belän milli mädäniyätkä çumıp alığız äle!' }
           </p>
